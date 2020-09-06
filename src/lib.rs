@@ -28,13 +28,18 @@ pub fn load_search_engine(index_dump: String) {
     let closure = Closure::wrap(Box::new(move |event: web_sys::KeyEvent| {
         search_results.set_inner_html("");
         let search_value = document.get_element_by_id("search_field").expect("Could not get results list").dyn_into::<web_sys::HtmlInputElement>().unwrap().value();
+        if search_value.len() == 0 {
+            return;
+        }
         let hits = index.search(&search_value);
         match hits {
             Some(documents) => {
-                let list = document.create_element("ul").unwrap();
+                let list = document.create_element("div").unwrap();
+                list.set_class_name("list-group");
                 search_results.append_child(&list).unwrap();
                 for doc in documents {
-                    let item = document.create_element("li").unwrap();
+                    let item = document.create_element("a").unwrap();
+                    item.set_class_name("list-group-item list-group-item-action");
                     item.set_inner_html(doc);
                     list.append_child(&item).unwrap();
                 }

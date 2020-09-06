@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>My Wasm Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   </head>
 
   <body>
@@ -16,10 +17,32 @@
         load_search_engine(index_dump);
       }).catch(console.error);
     </script>
-    <label for="search_field">Search the site:</label>
-    <input type="search" id="search_field" name="q" aria-label="Search through site content"/>
-    <input id="submit_search" type="button" value="Search">
-    <div id="search_results">
+    <div class="container">
+      <div class="py-5 text-center">
+        <h1>Web bloom</h1>
+        <p>
+        This page is a proof of concept of the <a href="https://github.com/odespesse/web-bloom">Web bloom project</a><br/>
+        Its objective is to demonstrate how to embed a lightweight search engine into a standard HTML page using only standard Web technologies.
+        </p>
+      </div>
+      <div class="row">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+              </svg>
+            </span>
+          </div>
+          <input type="search" id="search_field" name="q" class="form-control" placeholder="Search the site" aria-label="Search through site content"/>
+          <div class="input-group-append">
+            <input id="submit_search" type="button" value="Search" class="btn btn-outline-primary">
+          </div>
+        </div>
+      </div>
+      <div id="search_results">
+      </div>
     </div>
   </body>
 </html>
