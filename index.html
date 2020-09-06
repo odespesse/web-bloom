@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Wasm Project</title>
+  </head>
+
+  <body>
+    <script type="module">
+      // Importing WASM as a JS module requires us to call an init function provided by the default export.
+      // This is planned to be changed in the future.
+      import { default as wasm, load_search_engine } from "./pkg/web_bloom.js";
+      import index_dump from "./pkg/index_dump.js";
+
+      wasm().then((module) => {
+        load_search_engine(index_dump);
+      }).catch(console.error);
+    </script>
+    <label for="search_field">Search the site:</label>
+    <input type="search" id="search_field" name="q" aria-label="Search through site content"/>
+    <input id="submit_search" type="button" value="Search">
+    <div id="search_results">
+    </div>
+  </body>
+</html>
