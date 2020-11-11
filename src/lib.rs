@@ -14,10 +14,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[wasm_bindgen]
 pub fn load_search_engine(index_dump: String) {
     utils::set_panic_hook();
-    let mut index = Index::new();
-    index.index("toto".to_string(), "toto");
-    index.index("toto2".to_string(), "toto");
-    index.index("titi".to_string(), "titi");
+    let index = Index::restore(&index_dump);
     let window = web_sys::window().expect("no global `window` exists");
     let document = window.document().expect("should have a document on window");
 
@@ -25,13 +22,13 @@ pub fn load_search_engine(index_dump: String) {
     let submit = document.get_element_by_id("submit_search").expect("Could not get submit");
     let search_results = document.get_element_by_id("search_results").expect("Could not get results list");
 
-    let closure = Closure::wrap(Box::new(move |event: web_sys::KeyEvent| {
+    let closure = Closure::wrap(Box::new(move |_event: web_sys::KeyEvent| {
         search_results.set_inner_html("");
         let search_value = document.get_element_by_id("search_field").expect("Could not get results list").dyn_into::<web_sys::HtmlInputElement>().unwrap().value();
         if search_value.len() == 0 {
             return;
         }
-        let hits = index.search(&search_value);
+        let hits = index.search(&search_value).unwrap();
         match hits {
             Some(documents) => {
                 let list = document.create_element("div").unwrap();

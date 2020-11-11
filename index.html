@@ -14,7 +14,7 @@
       import index_dump from "./pkg/index_dump.js";
 
       wasm().then((module) => {
-        load_search_engine(index_dump);
+        load_search_engine(JSON.stringify(index_dump));
       }).catch(console.error);
     </script>
     <div class="container">
