@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>My Wasm Project</title>
+    <title>web-bloom</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   </head>
 
@@ -11,7 +11,7 @@
       // Importing WASM as a JS module requires us to call an init function provided by the default export.
       // This is planned to be changed in the future.
       import { default as wasm, load_search_engine } from "./pkg/web_bloom.js";
-      import index_dump from "./pkg/index_dump.js";
+      import index_dump from "./index_dump.js";
 
       wasm().then((module) => {
         load_search_engine(JSON.stringify(index_dump));

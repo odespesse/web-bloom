@@ -1,8 +1,12 @@
 [package]
 name = "web-bloom"
+description = "A search engine embedded in your web page."
 version = "0.1.0"
 authors = ["Olivier Despesse <olived19@gmail.com>"]
 edition = "2018"
+repository="https://github.com/odespesse/index-bloom"
+readme="README.md"
+keywords=["search-engine", "wasm", "web"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
